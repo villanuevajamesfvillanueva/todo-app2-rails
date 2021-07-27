@@ -1,25 +1,56 @@
-<p id="notice"><%= notice %></p>
 
-<h1>Tasks</h1>
+   <p id="notice"><%= notice %></p>
+      <!--Container-->
+      <div class="container w-full md:w-4/5 xl:w-3/5  mx-auto px-2">
+      		 	
+			<!--Card-->
+			 <div id='tasks' class="p-8 mt-6 lg:mt-0 rounded shadow bg-white">
+				<table id="example" class="stripe hover" style="width:100%; padding-top: 1em;  padding-bottom: 1em;">
+					<thead>
+						<tr>
+							<th data-priority="1">Task title</th>
+							<th data-priority="2">Category</th>
+							<th data-priority="3">Body</th>
+							<th data-priority="4">Date created</th>
+							<th data-priority="5">Deadline</th>
+						</tr>
+					</thead>
+					<tbody>
+                        <% @tasks.each do |task| %>
+						<tr>
+							<td><%= task.title %></td>
+							<td><%= task.category %></td>
+							<td><%= task.body %></td>
+							<td><%= task.created_at %></td>
+							<td><%= task.deadline %></td>
+						</tr>
+                        <% end %>
+						
+					</tbody>
+					
+				</table>
+			</div>
+			<!--/Card-->
 
-<table>
-  <thead>
-    <tr>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
 
-  <tbody>
-    <% @tasks.each do |task| %>
-      <tr>
-        <td><%= link_to 'Show', task %></td>
-        <td><%= link_to 'Edit', edit_task_path(task) %></td>
-        <td><%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+      </div>
+      <!--/container-->
+	  
+	<!-- jQuery -->
+	<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+		
+	<!--Datatables -->
+	<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+	<script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+	<script>
+		$(document).ready(function() {
+			var table = $('#example').DataTable( {
+					responsive: true
+				} )
+				.columns.adjust()
+				.responsive.recalc();
+		} );
+	</script>
 
-<br>
 
-<%= link_to 'New Task', new_task_path %>
+

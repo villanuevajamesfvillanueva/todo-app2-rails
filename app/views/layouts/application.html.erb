@@ -10,9 +10,13 @@
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    
+    <!-- tasks#index table -->
+	<link href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" rel="stylesheet">
+	<link href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css" rel="stylesheet">
   </head>
 
-  <body>
+  <body class="bg-gray-100 text-gray-900 tracking-wider leading-normal">
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
 
@@ -21,6 +25,9 @@
         <%= render 'partials/navbar' %>
     <% end %>
     
-    <%= yield %>
+    <div class="mt-20 md:mt-36 md:ml-24">
+        <%= yield %>
+    </div>
+    
   </body>
 </html>

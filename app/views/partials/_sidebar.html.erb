@@ -1,6 +1,6 @@
 <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
 
-<div class="md:flex flex-col md:flex-row md:min-h-screen w-full">
+<div class="sidebar md:flex flex-col md:flex-row md:min-h-screen w-full">
   <div @click.away="open = false" class="border-b flex flex-col w-full md:w-64 text-gray-700 bg-white dark-mode:text-gray-200 dark-mode:bg-gray-800 flex-shrink-0" x-data="{ open: false }">
     <div class="flex-shrink-0 px-8 py-4 flex flex-row items-center justify-between">
       <div class="flex items-center">
@@ -27,7 +27,7 @@
       <%= link_to "Calendar", root_path, class: sidebar_item_class %>
       <%= link_to "Projects", root_path, class: sidebar_item_class %>
       <%= link_to "Categories", root_path, class: sidebar_item_class %>
-      <%= link_to "Tasks", root_path, class: sidebar_item_class %>
+      <%= link_to "Tasks", tasks_path, class: sidebar_item_class %>
       <!-- show all tasks here, use magic table -->
       <%= link_to "Logout", destroy_user_session_path, method: :delete, class: sidebar_item_class %>
 
