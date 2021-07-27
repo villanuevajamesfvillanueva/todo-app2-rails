@@ -1,26 +1,54 @@
 @import "tailwindcss/base";
 @import "tailwindcss/components";
+@import "tailwindcss/utilities";
 
-// insert custom css here
+//--------------------- insert custom css here ---------------------
 
-.top-navbar {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
+.right-content {
+    width: 100%;
+
+    .main {
+        height: 92%;
+        
+        .board-header {
+            height: 10%;
+        }
+
+        .board {
+            height: 90%;
+
+            .tasks-container {
+                background-color: #f5f9f9;
+            }
+        }
+
+    }
 }
+
+
+
+.task {
+    width: 80%;
+    background-color: white;
+    margin: 20px 0;
+    border-radius: 1rem;
+    padding: 15px;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+}
+
+
 
 .username:hover {
     background: none;
     color: #333;
 }
 
-.sidebar {
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
+/* main div width */
+.calculated-width {
+    width: calc(100vw - 16rem);
 }
+
 
 /* tasks#index table */
 		
@@ -86,4 +114,3 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>th:first-child:before {
 }
 
 
-@import "tailwindcss/utilities";

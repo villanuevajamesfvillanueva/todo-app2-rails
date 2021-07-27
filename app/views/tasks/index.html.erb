@@ -1,40 +1,40 @@
 
-   <p id="notice"><%= notice %></p>
-      <!--Container-->
-      <div class="container w-full md:w-4/5 xl:w-3/5  mx-auto px-2">
-      		 	
-			<!--Card-->
-			 <div id='tasks' class="p-8 mt-6 lg:mt-0 rounded shadow bg-white">
-				<table id="example" class="stripe hover" style="width:100%; padding-top: 1em;  padding-bottom: 1em;">
-					<thead>
-						<tr>
-							<th data-priority="1">Task title</th>
-							<th data-priority="2">Category</th>
-							<th data-priority="3">Body</th>
-							<th data-priority="4">Date created</th>
-							<th data-priority="5">Deadline</th>
-						</tr>
-					</thead>
-					<tbody>
-                        <% @tasks.each do |task| %>
-						<tr>
-							<td><%= task.title %></td>
-							<td><%= task.category %></td>
-							<td><%= task.body %></td>
-							<td><%= task.created_at %></td>
-							<td><%= task.deadline %></td>
-						</tr>
-                        <% end %>
-						
-					</tbody>
-					
-				</table>
-			</div>
-			<!--/Card-->
+<p id="notice"><%= notice %></p>
+    <!--Container-->
+    <div class="container w-full md:w-4/5 xl:w-3/5  mx-auto px-2 bg-green-700">
+            
+        <!--Card-->
+        <div id='tasks' class="p-8 mt-6 lg:mt-0 rounded shadow bg-white">
+            <table id="example" class="stripe hover" style="width:100%; padding-top:1em; padding-bottom:1em;">
+                <thead>
+                    <tr>
+                        <th data-priority="1">Task title</th>
+                        <th data-priority="2">Category</th>
+                        <th data-priority="3">Body</th>
+                        <th data-priority="4">Date created</th>
+                        <th data-priority="5">Deadline</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% @tasks.each do |task| %>
+                    <tr>
+                        <td><%= task.title %></td>
+                        <td><%= task.category %></td>
+                        <td><%= task.body %></td>
+                        <td><%= task.created_at %></td>
+                        <td><%= task.deadline %></td>
+                    </tr>
+                    <% end %>
+                    
+                </tbody>
+                
+            </table>
+            
+        </div>
+        <!--/Card-->
 
-
-      </div>
-      <!--/container-->
+    </div>
+    <!--/container-->
 	  
 	<!-- jQuery -->
 	<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
