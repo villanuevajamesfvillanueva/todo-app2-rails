@@ -1,2 +1,90 @@
-<%= render 'partials/sidebar' %>
-<%= render 'partials/navbar' %>
+<main class="main flex-col p-0 m-0">
+    <div class="board-header w-full flex justify-between items-center px-10 pt-10">
+        <h4 class="text-xl font-medium">Boards</h4>
+        <div>Sort</div>
+    </div>
+
+    <div class="board w-full flex flex-col px-0 md:flex-row justify-between">
+
+        <% tasks_container = "tasks-container flex flex-col items-center w-full rounded-xl md:mx-5 md:mb-5 bg-gray-100" %>
+        <% status_header = "status-header flex justify-between items-center w-4/5 mt-8 mb-4" %>
+        <% sample_task = "<div class='task'> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</div>" %>
+        <% add_task_class = "add-task flex justify-between items-center w-4/5 h-10 rounded-md bg-green-300" %>
+        <% task_counter = "task-counter rounded-full bg-red-500 w-8 h-8 flex justify-between items-center" %>
+
+        <div class="<%= tasks_container %> status" id="unfinished" onmouseover="this.style.overflowY='auto'" onmouseout="this.style.overflowY='hidden'">
+            <% unfinished = current_user.unfinished %>
+            <div class="<%= status_header %>">
+                <h5 class="text-lg">To Do</h5>
+                <div class="<%= task_counter %>">
+                    <p class="m-auto"><%= unfinished.count %></p>
+                </div>
+            </div>
+            <%= link_to new_task_path, type: :button, class: add_task_class do %>
+                <p class="m-auto">+</p>
+            <% end %>
+            <% unfinished.each do |task| %>
+                <div class='task draggable' draggable='true' id='<%= task.id %>'>
+                    <div class='task-title flex flex-col justify-start items-start w-full mb-5'>
+                        <div class="flex justify-start items-center">
+                            <div class='categ-marker w-2 h-2 rounded-full bg-red-600 mt-1'></div>
+                            <td><%= link_to task.title, task, class: 'text-lg ml-3 text-black'%></td>
+                        </div>
+                        <span class='task-deadline ml-5 text-xs'><%= task.deadline.strftime("%B %d, %Y") %></span>
+                    </div>
+                    <div class='task-body text-center'><%= task.body.first(200) %></div>
+                </div>
+            <% end %>
+        </div>
+
+        <div class="<%= tasks_container %> status" id="in_progress" onmouseover="this.style.overflowY='auto'" onmouseout="this.style.overflowY='hidden'">     
+            <% in_progress = current_user.in_progress %>
+            <div class="<%= status_header %>">
+                <h5 class="text-lg">In Progress</h5>
+                <div class="<%= task_counter %>">
+                    <p class="m-auto"><%= in_progress.count %></p>
+                </div>
+            </div>
+            <%= link_to new_task_path, type: :button, class: add_task_class do %>
+                <p class="m-auto">+</p>
+            <% end %>
+            <% in_progress.each do |task| %>
+                <div class='task draggable' draggable='true' id='<%= task.id %>'>
+                    <div class='task-title flex flex-col justify-start items-start w-full mb-5'>
+                        <div class="flex justify-start items-center">
+                            <div class='categ-marker w-2 h-2 rounded-full bg-red-600 mt-1'></div>
+                            <td><%= link_to task.title, task, class: 'text-lg ml-3 text-black'%></td>
+                        </div>
+                        <span class='task-deadline ml-5 text-xs'><%= task.deadline.strftime("%B %d, %Y") %></span>
+                    </div>
+                    <div class='task-body text-center'><%= task.body.first(200) %></div>
+                </div>
+            <% end %>
+        </div>
+
+        <div class="<%= tasks_container %> status" id="completed" onmouseover="this.style.overflowY='auto'" onmouseout="this.style.overflowY='hidden'">   
+            <% completed = current_user.completed %>
+            <div class="<%= status_header %>">
+                <h5 class="text-lg">In Progress</h5>
+                <div class="<%= task_counter %>">
+                    <p class="m-auto"><%= completed.count %></p>
+                </div>
+            </div>
+            <%= link_to new_task_path, type: :button, class: add_task_class do %>
+                <p class="m-auto">+</p>
+            <% end %>
+            <% completed.each do |task| %>
+                <div class='task draggable' draggable='true' id='<%= task.id %>'>
+                    <div class='task-title flex flex-col justify-start items-start w-full mb-5'>
+                        <div class="flex justify-start items-center">
+                            <div class='categ-marker w-2 h-2 rounded-full bg-red-600 mt-1'></div>
+                            <td><%= link_to task.title, task, class: 'text-lg ml-3 text-black'%></td>
+                        </div>
+                        <span class='task-deadline ml-5 text-xs'><%= task.deadline.strftime("%B %d, %Y") %></span>
+                    </div>
+                    <div class='task-body text-center'><%= task.body.first(200) %></div>
+                </div>
+            <% end %>
+        </div>
+    </div>
+</main>

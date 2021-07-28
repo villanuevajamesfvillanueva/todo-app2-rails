@@ -10,11 +10,32 @@
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    
+    <% if user_signed_in? %>
+        <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+    <% end %>
+    
+    
+    <!-- tasks#index table -->
+	<link href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" rel="stylesheet">
+	<link href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css" rel="stylesheet">
   </head>
 
-  <body>
+  <body class="text-gray-900 tracking-wider leading-normal">
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
-    <%= yield %>
+
+    <div class="h-screen flex">
+    <% if user_signed_in? %>
+        <%= render 'partials/sidebar' %>
+        <div class="right-content flex-col h-screen border-l-2">
+            <%= render 'partials/navbar' %>
+            <%= yield %>
+        </div>
+    <% else %>
+        <%= yield %>
+    <% end %>
+    </div>
+    
   </body>
 </html>

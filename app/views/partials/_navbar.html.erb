@@ -1,21 +1,9 @@
 
-<nav class="top-navbar dark:bg-gray-800">
+<nav class="dark:bg-gray-800">
     <div class="container px-6 py-3 mx-auto">
         <div class="flex flex-col md:flex-row md:justify-between md:items-center">
             <div class="flex items-center justify-between">
                 <div class="flex items-center">
-
-                    <!-- Search input on desktop screen -->
-                    <div class="hidden mx-10 ml-40 md:block">
-                        <div class="relative">
-                            <span class="absolute inset-y-0 left-0 flex items-center pl-3">
-                                <%= image_tag 'svg/search.svg', size: '17x17' %>
-                            </span>
-
-                            <input type="text" class="ml-2 w-full py-2 pl-10 pr-4 text-gray-700 bg-white rounded-md dark:bg-gray-800 dark:text-gray-300 outline-none" placeholder="Search">
-                        </div>
-                    </div>
-
                 </div>
             </div>
 
@@ -25,25 +13,12 @@
                     <div class="flex flex-col mt-2 md:flex-row md:items-center md:mt-0 md:mx-1">
                         <%= image_tag 'svg/help.svg', size: '20x20', class: 'mr-2' %>
                         <%= image_tag 'svg/bell2.svg', size: '20x20' %>
-                        <%= link_to  "James", root_path, class: "my-1 text-sm leading-5 text-gray-700 dark:text-gray-200 hover:text-blue-600 dark:hover:text-indigo-400 hover:underline md:mx-4 md:my-0" %>
+                        <%= link_to  "James", root_path, class: "username my-1 text-sm leading-5 text-gray-700 dark:text-gray-200 dark:hover:text-indigo-400 md:mx-4 md:my-0" %>
                         <%= image_tag 'Bertram_Gilfoyle.jpg', size: '50x50', class: 'rounded-full' %>
                     </div>
                 </div>
-                
-
-                <!-- Search input on mobile screen -->
-                <div class="mt-14 md:hidden ">
-                    <div class="relative">
-                        <span class="absolute inset-y-0 left-0 flex items-center pl-3">
-                            <svg class="w-5 h-5 text-gray-400" viewBox="0 0 24 24" fill="none">
-                                <path d="M21 21L15 15M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-                            </svg>
-                        </span>
-
-                        <input type="text" class="w-full py-2 pl-10 pr-4 text-gray-700 bg-white rounded-md dark:bg-gray-800 dark:text-gray-300 outline-none" placeholder="Search">
-                    </div>
-                </div>
             </div>
+            
         </div>
     </div>
 </nav>
