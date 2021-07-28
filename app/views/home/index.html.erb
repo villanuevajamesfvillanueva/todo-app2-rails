@@ -13,48 +13,78 @@
         <% task_counter = "task-counter rounded-full bg-red-500 w-8 h-8 flex justify-between items-center" %>
 
         <div class="<%= tasks_container %> status" id="unfinished" onmouseover="this.style.overflowY='auto'" onmouseout="this.style.overflowY='hidden'">
+            <% unfinished = current_user.unfinished %>
             <div class="<%= status_header %>">
                 <h5 class="text-lg">To Do</h5>
                 <div class="<%= task_counter %>">
-                    <p class="m-auto">12<%#= @tasks.where(status: "in_progress").count %></p>
+                    <p class="m-auto"><%= unfinished.count %></p>
                 </div>
             </div>
             <%= link_to new_task_path, type: :button, class: add_task_class do %>
                 <p class="m-auto">+</p>
             <% end %>
-
-            <%= sanitize sample_task %>
+            <% unfinished.each do |task| %>
+                <div class='task draggable' draggable='true' id='<%= task.id %>'>
+                    <div class='task-title flex flex-col justify-start items-start w-full mb-5'>
+                        <div class="flex justify-start items-center">
+                            <div class='categ-marker w-2 h-2 rounded-full bg-red-600 mt-1'></div>
+                            <td><%= link_to task.title, task, class: 'text-lg ml-3 text-black'%></td>
+                        </div>
+                        <span class='task-deadline ml-5 text-xs'><%= task.deadline.strftime("%B %d, %Y") %></span>
+                    </div>
+                    <div class='task-body text-center'><%= task.body.first(200) %></div>
+                </div>
+            <% end %>
         </div>
 
         <div class="<%= tasks_container %> status" id="in_progress" onmouseover="this.style.overflowY='auto'" onmouseout="this.style.overflowY='hidden'">     
+            <% in_progress = current_user.in_progress %>
             <div class="<%= status_header %>">
                 <h5 class="text-lg">In Progress</h5>
                 <div class="<%= task_counter %>">
-                    <p class="m-auto">12<%#= @tasks.where(status: "in_progress").count %></p>
+                    <p class="m-auto"><%= in_progress.count %></p>
                 </div>
             </div>
             <%= link_to new_task_path, type: :button, class: add_task_class do %>
                 <p class="m-auto">+</p>
             <% end %>
-            
-            <%= sanitize sample_task %>
-            <%= sanitize sample_task %>
-            <%= sanitize sample_task %>
+            <% in_progress.each do |task| %>
+                <div class='task draggable' draggable='true' id='<%= task.id %>'>
+                    <div class='task-title flex flex-col justify-start items-start w-full mb-5'>
+                        <div class="flex justify-start items-center">
+                            <div class='categ-marker w-2 h-2 rounded-full bg-red-600 mt-1'></div>
+                            <td><%= link_to task.title, task, class: 'text-lg ml-3 text-black'%></td>
+                        </div>
+                        <span class='task-deadline ml-5 text-xs'><%= task.deadline.strftime("%B %d, %Y") %></span>
+                    </div>
+                    <div class='task-body text-center'><%= task.body.first(200) %></div>
+                </div>
+            <% end %>
         </div>
 
         <div class="<%= tasks_container %> status" id="completed" onmouseover="this.style.overflowY='auto'" onmouseout="this.style.overflowY='hidden'">   
+            <% completed = current_user.completed %>
             <div class="<%= status_header %>">
-                <h5 class="text-lg">Completed</h5>
+                <h5 class="text-lg">In Progress</h5>
                 <div class="<%= task_counter %>">
-                    <p class="m-auto">12<%#= @tasks.where(status: "in_progress").count %></p>
+                    <p class="m-auto"><%= completed.count %></p>
                 </div>
             </div>
             <%= link_to new_task_path, type: :button, class: add_task_class do %>
                 <p class="m-auto">+</p>
             <% end %>
-            
-            <%= sanitize sample_task %>
-            <%= sanitize sample_task %>
+            <% completed.each do |task| %>
+                <div class='task draggable' draggable='true' id='<%= task.id %>'>
+                    <div class='task-title flex flex-col justify-start items-start w-full mb-5'>
+                        <div class="flex justify-start items-center">
+                            <div class='categ-marker w-2 h-2 rounded-full bg-red-600 mt-1'></div>
+                            <td><%= link_to task.title, task, class: 'text-lg ml-3 text-black'%></td>
+                        </div>
+                        <span class='task-deadline ml-5 text-xs'><%= task.deadline.strftime("%B %d, %Y") %></span>
+                    </div>
+                    <div class='task-body text-center'><%= task.body.first(200) %></div>
+                </div>
+            <% end %>
         </div>
     </div>
 </main>

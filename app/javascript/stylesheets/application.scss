@@ -4,6 +4,11 @@
 
 //--------------------- insert custom css here ---------------------
 
+a:hover {
+    background: transparent;
+    color: #333;
+}
+
 .right-content {
     width: 100%;
 
@@ -19,12 +24,16 @@
 
             .tasks-container {
                 background-color: #f5f9f9;
+
+                .add-task:hover {
+                    color: white;
+                    background-color: rgb(131, 207, 131);
+                }
             }
         }
 
     }
 }
-
 
 
 .task {
@@ -38,11 +47,6 @@
 }
 
 
-
-.username:hover {
-    background: none;
-    color: #333;
-}
 
 /* main div width */
 .calculated-width {

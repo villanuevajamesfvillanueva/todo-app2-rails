@@ -1,5 +1,9 @@
 # frozen_string_literal: true
 
 class Task < ApplicationRecord
-  belongs_to :categories
+  belongs_to :category, class_name: 'Category', foreign_key: 'category_id'
+
+  def category
+    Category.find(category_id).title
+  end
 end
