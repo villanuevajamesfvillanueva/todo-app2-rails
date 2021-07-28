@@ -1,22 +1,58 @@
 <main class="main flex-col p-0 m-0">
-    <div class="board-header w-full">
-
+    <div class="board-header w-full flex justify-between items-center px-10 pt-10">
+        <h4 class="text-xl font-medium">Boards</h4>
+        <div>Sort</div>
     </div>
 
     <div class="board w-full flex flex-col px-0 md:flex-row justify-between">
+
         <% tasks_container = "tasks-container flex flex-col items-center w-full rounded-xl md:mx-5 md:mb-5 bg-gray-100" %>
+        <% status_header = "status-header flex justify-between items-center w-4/5 mt-8 mb-4" %>
         <% sample_task = "<div class='task'> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</div>" %>
-        <div class="<%= tasks_container %>">
+        <% add_task_class = "add-task flex justify-between items-center w-4/5 h-10 rounded-md bg-green-300" %>
+        <% task_counter = "task-counter rounded-full bg-red-500 w-8 h-8 flex justify-between items-center" %>
+
+        <div class="<%= tasks_container %> status" id="unfinished" onmouseover="this.style.overflowY='auto'" onmouseout="this.style.overflowY='hidden'">
+            <div class="<%= status_header %>">
+                <h5 class="text-lg">To Do</h5>
+                <div class="<%= task_counter %>">
+                    <p class="m-auto">12<%#= @tasks.where(status: "in_progress").count %></p>
+                </div>
+            </div>
+            <%= link_to new_task_path, type: :button, class: add_task_class do %>
+                <p class="m-auto">+</p>
+            <% end %>
+
             <%= sanitize sample_task %>
         </div>
 
-        <div class="<%= tasks_container %>">     
+        <div class="<%= tasks_container %> status" id="in_progress" onmouseover="this.style.overflowY='auto'" onmouseout="this.style.overflowY='hidden'">     
+            <div class="<%= status_header %>">
+                <h5 class="text-lg">In Progress</h5>
+                <div class="<%= task_counter %>">
+                    <p class="m-auto">12<%#= @tasks.where(status: "in_progress").count %></p>
+                </div>
+            </div>
+            <%= link_to new_task_path, type: :button, class: add_task_class do %>
+                <p class="m-auto">+</p>
+            <% end %>
+            
             <%= sanitize sample_task %>
             <%= sanitize sample_task %>
             <%= sanitize sample_task %>
         </div>
 
-        <div class="<%= tasks_container %>">   
+        <div class="<%= tasks_container %> status" id="completed" onmouseover="this.style.overflowY='auto'" onmouseout="this.style.overflowY='hidden'">   
+            <div class="<%= status_header %>">
+                <h5 class="text-lg">Completed</h5>
+                <div class="<%= task_counter %>">
+                    <p class="m-auto">12<%#= @tasks.where(status: "in_progress").count %></p>
+                </div>
+            </div>
+            <%= link_to new_task_path, type: :button, class: add_task_class do %>
+                <p class="m-auto">+</p>
+            <% end %>
+            
             <%= sanitize sample_task %>
             <%= sanitize sample_task %>
         </div>
