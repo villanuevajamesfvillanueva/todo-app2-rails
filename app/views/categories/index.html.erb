@@ -5,7 +5,49 @@
     </div>
 
     <div class="board w-full flex flex-col px-0 md:flex-row justify-between bg-red-500">
-        
+        <div class="flex flex-col w-1/2 h-full bg-yellow-500">
+            <% @categories.each do |category| %>
+                <div class="w-full h-20 border-solid border-4">
+                    <h5><%= category.title %><h5>
+                    <%= link_to "View", root_path %>
+                    <%= link_to "Edit", root_path %>
+                    <%= link_to 'Delete', category_path(category), method: :delete %>
+                </div>
+            <% end %>
+        </div>
+
+        <div class="flex w-1/2 h-full bg-green-500">
+            <h4>Create new category</h4>
+            <%= form_with scope: :category, url: categories_path, local: true do |f| %>
+                <div>
+                    <% if @category.errors.any? %>
+                    <ul>
+                        <% @category.errors.full_messages.each do |msg| %>
+                            <li class="alert alert-danger" role="alert" ><%= msg %></li>
+                        <% end %>
+                    </ul>
+                    <% end %>
+                </div>
+
+                <%= f.hidden_field :user_id, value: current_user.id %>
+
+                <div>
+                    <%= f.label :title %>
+                    <%= f.text_field :title %>
+                </div>
+
+                <div>
+                    <%= f.label :description %>
+                    <%= f.text_field :description %>
+                </div>
+
+
+                <div>
+                    <%= f.submit 'Create category', class: 'cursor-pointer'%>
+                </div>
+
+            <% end %>
+        </div>
            
 
              
