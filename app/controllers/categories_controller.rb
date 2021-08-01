@@ -6,6 +6,11 @@ class CategoriesController < ApplicationController
     @category = Category.new
   end
 
+  def edit
+    @categories = current_user.categories.order('updated_at DESC')
+    @category = Category.find(params[:id])
+  end
+
   def create 
     @category = current_user.categories.build(category_params)
 
