@@ -5,23 +5,13 @@
     </div>
 
     <div class="board w-full flex flex-col px-0 md:flex-row justify-between">
-        <div class="flex flex-col w-full md:mb-5 md:mx-5 bg-gray-100 pt-8 rounded-xl">
-            <% @categories.each do |category| %>
-                <div class="custom-shadow mx-auto my-2 w-11/12 h-20 rounded-xl bg-white">
-                    <div class='categ-marker w-2 h-2 rounded-full mt-1' style="background:<%= category.color %>"></div>
-                    <h5 class="text-xl pl-16"><%= category.title %><h5>
-                    <%= link_to "View", root_path %>
-                    <%= link_to "Edit", edit_category_path(category) %>
-                    <%= link_to 'Delete', category_path(category), method: :delete %>
-                </div>
-            <% end %>
-        </div>
+        <%= render 'index' %>
 
         <div class="flex flex-col w-full md:mb-5 md:mx-5 bg-gray-100 pt-8 rounded-xl">
             <% form_class = "mx-auto w-11/12 custom-shadow rounded-xl bg-white px-6 py-8" %>
             <% category_input = "block w-full px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring" %>
             <%= form_with scope: :category, url: categories_path, class: form_class, local: true do |f| %>
-            <h4 class="text-2xl">Create new category</h4>
+            <h4 class="text-2xl">Edit category</h4>
                 <div>
                     <% if @category.errors.any? %>
                     <ul>
