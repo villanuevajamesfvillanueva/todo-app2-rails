@@ -14,7 +14,7 @@ class CategoriesController < ApplicationController
         redirect_to request.referrer, notice: 'Category was created successfully.'
         
     else
-        render :new
+        redirect_to request.referrer, alert: 'Failed to create category.'
     end
   end
 
