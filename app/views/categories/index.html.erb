@@ -5,7 +5,7 @@
     </div>
 
     <div class="board w-full flex flex-col px-0 md:flex-row justify-between">
-        <div class="flex flex-col w-full h-full md:mx-5 bg-gray-100 pt-8 rounded-xl">
+        <div class="flex flex-col w-full md:mb-5 md:mx-5 bg-gray-100 pt-8 rounded-xl">
             <% @categories.each do |category| %>
                 <div class="custom-shadow mx-auto my-2 w-11/12 h-20 rounded-xl bg-white">
                     <h5 class="text-xl pl-16"><%= category.title %><h5>
@@ -16,7 +16,7 @@
             <% end %>
         </div>
 
-        <div class="flex flex-col w-full h-full md:mx-5 bg-gray-100 pt-8 rounded-xl">
+        <div class="flex flex-col w-full md:mb-5 md:mx-5 bg-gray-100 pt-8 rounded-xl">
             <% form_class = "mx-auto w-11/12 custom-shadow rounded-xl bg-white px-6 py-8" %>
             <%= form_with scope: :category, url: categories_path, class: form_class, local: true do |f| %>
             <h4 class="text-2xl">Create new category</h4>
@@ -46,6 +46,16 @@
                     </div>
                 </div>
 
+                <div class="mt-4">
+                    <div class="flex flex-col justify-between">
+                        <p>Pick a color</p>
+                        <p>Old</p>
+                        <div class="color-picker custom-color-picker-class"></div>
+                        <p>New</p>
+                        <div class="w-20 h-20" id="color-div"></div>
+                    </div>
+                </div>
+
 
                 <div class="mt-8">
                     <%= f.submit 'Create category', class: "cursor-pointer w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-gray-700 rounded hover:bg-gray-600 focus:outline-none focus:bg-gray-600" %>
@@ -56,13 +66,8 @@
             
         </div>
            
-
-             
-         
-        
-
-           
-            
         
     </div>
 </main>
+
+<%= javascript_pack_tag 'color_picker.js' %>
