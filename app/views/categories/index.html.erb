@@ -1,14 +1,14 @@
 <main class="main flex-col p-0 m-0">
-    <div class="board-header w-full flex justify-between items-center px-20 bg-blue-500 pt-10">
-        <h4 class="text-xl font-medium">Boards</h4>
+    <div class="board-header w-full flex justify-between items-center px-10">
+        <h4 class="text-3xl font-medium">Categories</h4>
         <div>Sort</div>
     </div>
 
-    <div class="board w-full flex flex-col px-0 md:flex-row justify-between bg-red-500">
-        <div class="flex flex-col w-1/2 h-full bg-yellow-500">
+    <div class="board w-full flex flex-col px-0 md:flex-row justify-between">
+        <div class="flex flex-col w-full h-full md:mx-5 bg-gray-100 pt-8 rounded-xl">
             <% @categories.each do |category| %>
-                <div class="w-full h-20 border-solid border-4">
-                    <h5><%= category.title %><h5>
+                <div class="custom-shadow mx-auto my-2 w-11/12 h-20 rounded-xl bg-white">
+                    <h5 class="text-xl pl-16"><%= category.title %><h5>
                     <%= link_to "View", root_path %>
                     <%= link_to "Edit", root_path %>
                     <%= link_to 'Delete', category_path(category), method: :delete %>
@@ -16,9 +16,10 @@
             <% end %>
         </div>
 
-        <div class="flex w-1/2 h-full bg-green-500">
-            <h4>Create new category</h4>
-            <%= form_with scope: :category, url: categories_path, local: true do |f| %>
+        <div class="flex flex-col w-full h-full md:mx-5 bg-gray-100 pt-8 rounded-xl">
+            <% form_class = "mx-auto w-11/12 custom-shadow rounded-xl bg-white px-6 py-8" %>
+            <%= form_with scope: :category, url: categories_path, class: form_class, local: true do |f| %>
+            <h4 class="text-2xl">Create new category</h4>
                 <div>
                     <% if @category.errors.any? %>
                     <ul>
@@ -31,22 +32,28 @@
 
                 <%= f.hidden_field :user_id, value: current_user.id %>
 
-                <div>
-                    <%= f.label :title %>
-                    <%= f.text_field :title %>
+                <div class="mt-4">
+                    <div class="flex flex-col justify-between">
+                        <%= f.label :title %>
+                        <%= f.text_field :title, class: "block w-full px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring" %>
+                    </div>
                 </div>
 
-                <div>
-                    <%= f.label :description %>
-                    <%= f.text_field :description %>
+                <div class="mt-4">
+                    <div class="flex flex-col justify-between">
+                        <%= f.label :description %>
+                        <%= f.text_field :description, class: "block w-full px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring" %>
+                    </div>
                 </div>
 
 
-                <div>
-                    <%= f.submit 'Create category', class: 'cursor-pointer'%>
+                <div class="mt-8">
+                    <%= f.submit 'Create category', class: "cursor-pointer w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-gray-700 rounded hover:bg-gray-600 focus:outline-none focus:bg-gray-600" %>
                 </div>
 
             <% end %>
+
+            
         </div>
            
 
