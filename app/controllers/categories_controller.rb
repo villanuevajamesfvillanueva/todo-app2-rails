@@ -14,7 +14,7 @@ class CategoriesController < ApplicationController
         redirect_to request.referrer, notice: 'Category was created successfully.'
         
     else
-        render :new
+        redirect_to request.referrer, alert: 'Failed to create category.'
     end
   end
 
@@ -26,6 +26,6 @@ class CategoriesController < ApplicationController
 
   private
   def category_params
-    params.require(:category).permit(:user_id, :title, :description)
+    params.require(:category).permit(:user_id, :title, :description, :color)
   end
 end
