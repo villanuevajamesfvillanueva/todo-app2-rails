@@ -11,6 +11,16 @@ class CategoriesController < ApplicationController
     @category = Category.find(params[:id])
   end
 
+  def update
+    @category = Category.find(params[:id])
+    if @category.update(category_params)
+        redirect_to request.referrer, notice: 'Category was updated successfully.'
+        
+    else
+        redirect_to request.referrer, alert: 'Failed to update category.'
+    end
+  end
+
   def create 
     @category = current_user.categories.build(category_params)
 
