@@ -1,5 +1,103 @@
-<h1>New Task</h1>
+<main class="main flex-col p-0 m-0">
+    <div class="board-header w-full flex justify-between items-center px-10">
+        <h4 class="text-3xl font-medium">Tasks</h4>
+        <div>Sort</div>
+    </div>
 
-<%= render 'form', task: @task %>
+    <div class="board w-full flex flex-col px-0 md:flex-row justify-between">
+        <div class="flex flex-col w-full md:mb-5 md:mx-5 bg-gray-100 pt-8 rounded-xl">
+        <% @tasks.each do |task| %>
+            <div class="custom-shadow mx-auto my-2 p-4 w-11/12 h-auto rounded-xl bg-white">
+                <div class="flex w-full justify-between items-center">
+                    <div class="flex justify-start items-center">
+                        <div class='categ-marker w-2 h-2 rounded-full mt-1' style="background:<%= task.category.color %>"></div>
+                        <h5 class="text-lg ml-3 text-black"><%= task.title %><h5>
+                        
+                        <div @click.away="open = false" class="relative" x-data="{ open: false }">
+                            <button @click="open = !open" class="flex flex-row items-center w-auto px-4 py-2 mt-2 text-sm font-semibold text-left bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:focus:bg-gray-600 dark-mode:hover:bg-gray-600 md:block hover:text-gray-900 focus:text-gray-900 focus:outline-none focus:shadow-outline">
+                                <svg fill="currentColor" viewBox="0 0 20 20" :class="{'rotate-180': open, 'rotate-0': !open}" class="inline w-4 h-4 mt-1 ml-1 transition-transform duration-200 transform md:-mt-1"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                            </button>
+                            <div x-show="open" x-transition:enter="transition ease-out duration-100" x-transition:enter-start="transform opacity-0 scale-95" x-transition:enter-end="transform opacity-100 scale-100" x-transition:leave="transition ease-in duration-75" x-transition:leave-start="transform opacity-100 scale-100" x-transition:leave-end="transform opacity-0 scale-95" class="absolute right-0 w-full mt-2 origin-top-right rounded-md shadow-lg">
+                                <div class="w-max px-2 py-2 bg-white rounded-md shadow dark-mode:bg-gray-800">
+                                    <%= task.body %>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
 
-<%= link_to 'Back', tasks_path %>
+                    <div class="flex flex-row items-center">
+                        <%= link_to edit_task_path(task) do %>
+                            <h6>Edit</h6>
+                        <% end %>
+
+                        <%= link_to task_path(task), method: :delete, class: "ml-4" do %>
+                            <h6>Delete</h6>
+                        <% end %>
+                    </div>
+                </div>
+                <h6 class="ml-5"><%= task.deadline %></h6>
+
+            </div>
+        <% end %>
+    </div>
+
+        <div class="flex flex-col w-full md:mb-5 md:mx-5 bg-gray-100 pt-8 rounded-xl">
+            
+            <% form_class = "mx-auto w-11/12 custom-shadow rounded-xl bg-white px-6 py-8" %>
+            <% task_input = "block w-full px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring" %>
+            <% label_class = "block mb-2 text-sm font-medium text-gray-600 dark:text-gray-200" %>
+
+            <%= form_with scope: :task, url: tasks_path, class: form_class, local: true do |f| %>
+            <h4 class="text-2xl">Create new task</h4>
+                <div>
+                    <% if @task.errors.any? %>
+                    <ul>
+                        <% @task.errors.full_messages.each do |msg| %>
+                            <li class="alert alert-danger" role="alert" ><%= msg %></li>
+                        <% end %>
+                    </ul>
+                    <% end %>
+                </div>
+
+                <div class="mt-4">
+                    <div class="flex flex-col justify-between">
+                        <%= f.label :title, class: label_class %>
+                        <%= f.text_field :title, class: task_input %>
+                    </div>
+                </div>
+
+                <div class="mt-4 flex flex-row justify-between">
+                    <div class="w-1/2 mr-2">
+                        <%= f.label "Category", class: label_class %>
+                        <%= f.collection_select :category_id, Category.where(user_id: current_user.id).order(:title),:id,:title, include_blank: true, class: task_input %>
+                    </div>
+
+                    <div class="w-1/2 ml-2">
+                        <%= f.label "Deadline", class: label_class %>
+                        <%= f.date_field :deadline, class: task_input + " cursor-pointer " %>
+                        
+                    </div>
+                </div>
+
+                <div class="mt-4">
+                    <div class="flex flex-col justify-between">
+                        <%= f.label :body, class: label_class %>
+                        <%= f.text_area :body, class: task_input + " h-48 " %>
+                    </div>
+                </div>
+
+                <%= f.hidden_field :status, value: "unfinished" %>
+               
+                <div class="mt-8">
+                    <%= f.submit 'Create task', class: "cursor-pointer w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-gray-700 rounded hover:bg-gray-600 focus:outline-none focus:bg-gray-600" %>
+                </div>
+            <% end %>
+
+        </div>
+           
+        
+    </div>
+</main>
+
+<%= javascript_pack_tag 'color_picker.js' %>
