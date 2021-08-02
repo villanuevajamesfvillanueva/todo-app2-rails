@@ -1,7 +1,5 @@
 import Pickr from '@simonwep/pickr';
 
-
-const colorDiv = document.querySelector('#color-div');
 const colorTextBox = document.getElementById('color-textbox');
 
 const pickr = Pickr.create({
@@ -37,9 +35,9 @@ const pickr = Pickr.create({
         interaction: {
             hex: true,
             rgba: true,
-            cmyk: true,
             input: true,
-            clear: true
+            clear: true,
+            save: true
         }
     }
 });
@@ -47,7 +45,6 @@ const pickr = Pickr.create({
 
 pickr.on('change', (color, source, instance) => {
     let rgbaColor = color.toRGBA().toString(3);
-    colorDiv.style.background = rgbaColor;
     colorTextBox.value = rgbaColor;
 });
 
