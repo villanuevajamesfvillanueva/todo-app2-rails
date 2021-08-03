@@ -22,6 +22,7 @@ class TasksController < ApplicationController
   def edit
     @tasks = current_user.tasks
     @task = Task.find(params[:id])
+    @current_user_categories = Category.where(user_id: current_user.id).order(:title)
   end
 
   # POST /tasks or /tasks.json
@@ -38,14 +39,10 @@ class TasksController < ApplicationController
 
   # PATCH/PUT /tasks/1 or /tasks/1.json
   def update
-    respond_to do |format|
-      if @task.update(task_params)
-        format.html { redirect_to @task, notice: 'Task was successfully updated.' }
-        format.json { render :show, status: :ok, location: @task }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @task.errors, status: :unprocessable_entity }
-      end
+    if @task.update(task_params)
+    redirect_to request.referrer, notice: 'Task was created successfully.'
+    else
+    redirect_to request.referrer, alert: 'Failed to create task.'
     end
   end
 
