@@ -15,6 +15,7 @@ class TasksController < ApplicationController
   def new
     @tasks = current_user.tasks
     @task = Task.new
+    @current_user_categories = Category.where(user_id: current_user.id).order(:title)
   end
 
   # GET /tasks/1/edit

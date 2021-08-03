@@ -67,16 +67,15 @@
                     </div>
                 </div>
 
-                <div class="mt-4 flex flex-row justify-between">
+                <div class="mt-4 flex flex-row justify-between items-center">
                     <div class="w-1/2 mr-2">
                         <%= f.label "Category", class: label_class %>
-                        <%= f.collection_select :category_id, Category.where(user_id: current_user.id).order(:title),:id,:title, include_blank: true, class: task_input %>
+                        <%= f.collection_select :category_id, @current_user_categories, :id, :title, { include_blank: true }, { class: task_input + " cursor-pointer " } %>
                     </div>
 
                     <div class="w-1/2 ml-2">
                         <%= f.label "Deadline", class: label_class %>
                         <%= f.date_field :deadline, class: task_input + " cursor-pointer " %>
-                        
                     </div>
                 </div>
 
