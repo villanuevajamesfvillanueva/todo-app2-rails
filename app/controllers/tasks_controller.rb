@@ -2,6 +2,7 @@
 
 class TasksController < ApplicationController
   before_action :set_task, only: %i[show edit update destroy]
+  skip_before_action :verify_authenticity_token, only: :update_status
 
   # GET /tasks or /tasks.json
   def index
@@ -44,6 +45,13 @@ class TasksController < ApplicationController
     else
     redirect_to request.referrer, alert: 'Failed to create task.'
     end
+  end
+
+  def update_status
+    # @categories = current_user.categories
+    # @tasks = current_user.tasks 
+    @task = Task.find(params[:id])
+    @task.update(status: params[:status])
   end
 
   # DELETE /tasks/1 or /tasks/1.json
