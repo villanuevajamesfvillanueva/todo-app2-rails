@@ -7,7 +7,7 @@
     </div>
 
     <div class="board w-full flex flex-col px-0 md:flex-row justify-between">
-        <div class="flex flex-col w-full md:mb-5 md:mx-5 bg-gray-100 pt-8 rounded-xl">
+        <div class="flex flex-col w-full md:mb-5 md:mx-5 bg-gray-100 pt-8 rounded-xl" onmouseover="this.style.overflowY='auto'" onmouseout="this.style.overflowY='hidden'">
             <% @tasks.each do |task| %>
                 <div class="custom-shadow mx-auto my-2 p-4 w-11/12 h-auto rounded-xl bg-white">
                     <div class="flex w-full justify-between items-center">
@@ -51,16 +51,7 @@
             <% label_class = "block mb-2 text-sm font-medium text-gray-600 dark:text-gray-200" %>
 
             <%= form_with scope: :task, url: task_path(@task), class: form_class, method: :put, local: true do |f| %>
-            <h4 class="text-2xl">Edit task</h4>
-                <div>
-                    <% if @task.errors.any? %>
-                    <ul>
-                        <% @task.errors.full_messages.each do |msg| %>
-                            <li class="alert alert-danger" role="alert" ><%= msg %></li>
-                        <% end %>
-                    </ul>
-                    <% end %>
-                </div>
+                <h4 class="text-2xl">Edit task</h4>
 
                 <div class="mt-4">
                     <div class="flex flex-col justify-between">

@@ -14,10 +14,13 @@ class CategoriesController < ApplicationController
   def update
     @category = Category.find(params[:id])
     if @category.update(category_params)
-        redirect_to request.referrer, notice: 'Category was updated successfully.'
-        
+        redirect_to categories_path, notice: 'Category was updated successfully.'
     else
-        redirect_to request.referrer, alert: 'Failed to update category.'
+        err_msg = '<div class="text-sm font-medium text-red-700 alert">Failed to update category.</div>'
+        @category.errors.full_messages.each do |msg|
+            err_msg += "<div class='flex-1 leading-snug text-sm text-red-600'>#{msg}</div>"
+        end
+        redirect_to request.referrer, alert: err_msg
     end
   end
 
@@ -29,7 +32,11 @@ class CategoriesController < ApplicationController
         redirect_to request.referrer, notice: 'Category was created successfully.'
         
     else
-        redirect_to request.referrer, alert: 'Failed to create category.'
+        err_msg = '<div class="text-sm font-medium text-red-700 alert">Failed to create category.</div>'
+        @category.errors.full_messages.each do |msg|
+            err_msg += "<div class='flex-1 leading-snug text-sm text-red-600'>#{msg}</div>"
+        end
+        redirect_to request.referrer, alert: err_msg
     end
   end
 

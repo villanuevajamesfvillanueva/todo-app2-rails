@@ -22,9 +22,8 @@
   </head>
 
   <body class="text-gray-900 tracking-wider leading-normal cursor-default">
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-
+    <%= render 'partials/flash' %>
+    
     <div class="h-screen flex">
     <% if user_signed_in? %>
         <%= render 'partials/sidebar' %>
@@ -44,6 +43,19 @@
 	<!--Datatables -->
 	<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
 	<script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+    
+    <script>
+        $(document).on('turbolinks:load', function(){
+            $(".alertContainer").delay(3000).slideUp(500, function(){
+                
+            });
+
+            $(".noticeContainer").delay(2000).slideUp(500, function(){
+                
+            });
+        });
+    </script>
+
   </body>
 
 </html>
