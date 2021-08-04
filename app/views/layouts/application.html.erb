@@ -21,7 +21,7 @@
 	<link href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css" rel="stylesheet">
   </head>
 
-  <body class="text-gray-900 tracking-wider leading-normal cursor-default">
+  <body class="text-gray-900 tracking-wider leading-normal cursor-default overflow-hidden">
     <%= render 'partials/flash' %>
     
     <div class="h-screen flex">
@@ -46,11 +46,11 @@
     
     <script>
         $(document).on('turbolinks:load', function(){
-            $(".alertContainer").delay(3000).slideUp(500, function(){
+            $(".alertContainer").delay(3000).slideUp(200, function(){
                 
             });
 
-            $(".noticeContainer").delay(2000).slideUp(500, function(){
+            $(".noticeContainer").delay(2000).slideUp(200, function(){
                 
             });
         });

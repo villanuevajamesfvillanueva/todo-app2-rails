@@ -16,7 +16,7 @@
             <div class="<%= status_header %>">
                 <h5 class="text-lg">To Do</h5>
                 <div class="<%= task_counter %>">
-                    <p class="m-auto"><%= unfinished.count %></p>
+                    <p class="m-auto font-sans"><%= unfinished.count %></p>
                 </div>
             </div>
             <%= link_to new_task_path, type: :button, class: add_task_class do %>
@@ -41,7 +41,7 @@
             <div class="<%= status_header %>">
                 <h5 class="text-lg">In Progress</h5>
                 <div class="<%= task_counter %>">
-                    <p class="m-auto"><%= in_progress.count %></p>
+                    <p class="m-auto font-sans"><%= in_progress.count %></p>
                 </div>
             </div>
             <%= link_to new_task_path, type: :button, class: add_task_class do %>
@@ -66,7 +66,7 @@
             <div class="<%= status_header %>">
                 <h5 class="text-lg">Completed</h5>
                 <div class="<%= task_counter %>">
-                    <p class="m-auto"><%= completed.count %></p>
+                    <p class="m-auto font-sans"><%= completed.count %></p>
                 </div>
             </div>
             <%= link_to new_task_path, type: :button, class: add_task_class do %>

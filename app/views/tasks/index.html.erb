@@ -1,40 +1,36 @@
 
-<p id="notice"><%= notice %></p>
-    <!--Container-->
-    <div class="container w-full md:w-4/5 xl:w-3/5  mx-auto px-2 bg-green-700">
-            
-        <!--Card-->
-        <div id='tasks' class="p-8 mt-6 lg:mt-0 rounded shadow bg-white">
-            <table id="example" class="stripe hover" style="width:100%; padding-top:1em; padding-bottom:1em;">
-                <thead>
-                    <tr>
-                        <th data-priority="1">Task title</th>
-                        <th data-priority="2">Category</th>
-                        <th data-priority="3">Body</th>
-                        <th data-priority="4">Date created</th>
-                        <th data-priority="5">Deadline</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <% @tasks.each do |task| %>
-                    <tr>
-                        <td><%= task.title %></td>
-                        <td><%= task.category.title %></td>
-                        <td><%= task.body %></td>
-                        <td><%= task.created_at %></td>
-                        <td><%= task.deadline %></td>
-                    </tr>
-                    <% end %>
-                    
-                </tbody>
+<div class="flex flex-row w-full mx-auto px-10 ">
+    <!--Card-->
+    <div id='tasks-table' class="p-8 w-full mt-6 rounded-lg shadow bg-white custom-shadow">
+        <table id="example" class="stripe hover" style="width:100%; padding-top:1em; padding-bottom:1em;">
+            <thead>
+                <tr>
+                    <th data-priority="1">Task title</th>
+                    <th data-priority="2">Category</th>
+                    <th data-priority="3">Body</th>
+                    <th data-priority="4">Date created</th>
+                    <th data-priority="5">Deadline</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% @tasks.each do |task| %>
+                <tr>
+                    <td class="text-center w-40"><%= task.title %></td>
+                    <td class="text-center w-60"><%= task.category.title %></td>
+                    <td class="text-center w-80"><%= task.body.first(50) %></td>
+                    <td class="text-center w-40"><%= task.created_at.strftime("%B %d, %Y") %></td>
+                    <td class="text-center w-40"><%= task.deadline.strftime("%B %d, %Y") %></td>
+                </tr>
+                <% end %>
                 
-            </table>
+            </tbody>
             
-        </div>
-        <!--/Card-->
-
+        </table>
+        
     </div>
-    <!--/container-->
+    <!--/Card-->
+
+</div>
 
 <!-- jQuery -->
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
