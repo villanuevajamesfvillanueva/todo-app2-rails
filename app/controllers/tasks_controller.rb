@@ -48,8 +48,6 @@ class TasksController < ApplicationController
   end
 
   def update_status
-    # @categories = current_user.categories
-    # @tasks = current_user.tasks 
     @task = Task.find(params[:id])
     @task.update(status: params[:status])
   end
@@ -58,7 +56,7 @@ class TasksController < ApplicationController
   def destroy
     @task.destroy
     respond_to do |format|
-      format.html { redirect_to tasks_url, notice: 'Task was successfully destroyed.' }
+      format.html { redirect_to request.referrer, notice: 'Task was successfully deleted.' }
       format.json { head :no_content }
     end
   end

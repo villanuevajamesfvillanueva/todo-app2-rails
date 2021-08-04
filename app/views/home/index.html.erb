@@ -9,7 +9,7 @@
         <% tasks_container = "tasks-container flex flex-col items-center w-full rounded-xl md:mx-5 md:mb-5 bg-gray-100" %>
         <% status_header = "status-header flex justify-between items-center w-4/5 mt-8 mb-4" %>
         <% add_task_class = "add-task flex justify-between items-center w-4/5 h-10 rounded-md bg-gray-200" %>
-        <% task_counter = "task-counter rounded-full bg-gray-200 text-green-600 font-bold w-8 h-8 flex justify-between items-center " %>
+        <% task_counter = "task-counter rounded-full bg-gray-200 text-blue-400 font-bold w-8 h-8 flex justify-between items-center " %>
 
         <div class="<%= tasks_container %> status" id="unfinished" onmouseover="this.style.overflowY='auto'" onmouseout="this.style.overflowY='hidden'">
             <% unfinished = current_user.unfinished %>
@@ -20,7 +20,7 @@
                 </div>
             </div>
             <%= link_to new_task_path, type: :button, class: add_task_class do %>
-                <p class="m-auto font-bold">+</p>
+                <p class="m-auto font-bold text-lg">+</p>
             <% end %>
             <% unfinished.each do |task| %>
                 <div class='task draggable custom-shadow' draggable='true' id='<%= task.id %>'>
@@ -45,7 +45,7 @@
                 </div>
             </div>
             <%= link_to new_task_path, type: :button, class: add_task_class do %>
-                <p class="m-auto font-bold">+</p>
+                <p class="m-auto font-bold text-lg">+</p>
             <% end %>
             <% in_progress.each do |task| %>
                 <div class='task draggable custom-shadow' draggable='true' id='<%= task.id %>'>
@@ -70,7 +70,7 @@
                 </div>
             </div>
             <%= link_to new_task_path, type: :button, class: add_task_class do %>
-                <p class="m-auto font-bold">+</p>
+                <p class="m-auto font-bold text-lg">+</p>
             <% end %>
             <% completed.each do |task| %>
                 <div class='task draggable custom-shadow' draggable='true' id='<%= task.id %>'>

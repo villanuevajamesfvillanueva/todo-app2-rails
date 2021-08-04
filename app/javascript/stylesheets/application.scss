@@ -27,12 +27,12 @@ a:hover {
                 background-color: #f5f9f9;
 
                 .add-task {
-                    color: rgb(129, 211, 129);
+                    color: rgb(96, 165, 250);
                 }
 
                 .add-task:hover {
                     color: white;
-                    background-color: rgba(129, 211, 129, 0.7);
+                    background-color: rgba(96, 165, 250, 0.7);
                 }
             }
         }
@@ -49,6 +49,12 @@ a:hover {
     border-radius: 1rem;
     padding: 1rem;
     
+}
+
+.sidebar-tasks {
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: space-between !important;
 }
 
 .custom-shadow {
