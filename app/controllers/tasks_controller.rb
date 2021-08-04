@@ -2,6 +2,7 @@
 
 class TasksController < ApplicationController
   before_action :set_task, only: %i[show edit update destroy]
+  skip_before_action :verify_authenticity_token, only: :update_status
 
   # GET /tasks or /tasks.json
   def index
@@ -13,38 +14,44 @@ class TasksController < ApplicationController
 
   # GET /tasks/new
   def new
+    @tasks = current_user.tasks
     @task = Task.new
+    @current_user_categories = Category.where(user_id: current_user.id).order(:title)
   end
 
   # GET /tasks/1/edit
-  def edit; end
+  def edit
+    @tasks = current_user.tasks
+    @task = Task.find(params[:id])
+    @current_user_categories = Category.where(user_id: current_user.id).order(:title)
+  end
 
   # POST /tasks or /tasks.json
   def create
-    @task = Task.new(task_params)
+    @task = current_user.tasks.build(task_params)
 
-    respond_to do |format|
-      if @task.save
-        format.html { redirect_to @task, notice: 'Task was successfully created.' }
-        format.json { render :show, status: :created, location: @task }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @task.errors, status: :unprocessable_entity }
-      end
+    if @task.valid?
+        @task.save
+        redirect_to request.referrer, notice: 'Task was created successfully.'
+    else
+        redirect_to request.referrer, alert: 'Failed to create task.'
     end
   end
 
   # PATCH/PUT /tasks/1 or /tasks/1.json
   def update
-    respond_to do |format|
-      if @task.update(task_params)
-        format.html { redirect_to @task, notice: 'Task was successfully updated.' }
-        format.json { render :show, status: :ok, location: @task }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @task.errors, status: :unprocessable_entity }
-      end
+    if @task.update(task_params)
+    redirect_to request.referrer, notice: 'Task was created successfully.'
+    else
+    redirect_to request.referrer, alert: 'Failed to create task.'
     end
+  end
+
+  def update_status
+    # @categories = current_user.categories
+    # @tasks = current_user.tasks 
+    @task = Task.find(params[:id])
+    @task.update(status: params[:status])
   end
 
   # DELETE /tasks/1 or /tasks/1.json

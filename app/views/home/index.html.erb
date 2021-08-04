@@ -64,7 +64,7 @@
         <div class="<%= tasks_container %> status" id="completed" onmouseover="this.style.overflowY='auto'" onmouseout="this.style.overflowY='hidden'">   
             <% completed = current_user.completed %>
             <div class="<%= status_header %>">
-                <h5 class="text-lg">In Progress</h5>
+                <h5 class="text-lg">Completed</h5>
                 <div class="<%= task_counter %>">
                     <p class="m-auto"><%= completed.count %></p>
                 </div>
@@ -87,3 +87,5 @@
         </div>
     </div>
 </main>
+
+<%= javascript_pack_tag 'drag' %>
