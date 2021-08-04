@@ -1,6 +1,8 @@
 <main class="main flex-col p-0 m-0">
     <div class="board-header w-full flex justify-between items-center px-10">
-        <h4 class="text-3xl font-medium">Tasks</h4>
+        <%= link_to new_task_path do %>
+            <h4 class="text-3xl font-medium">Tasks</h4>
+        <% end %>
         <div>Sort</div>
     </div>
 
@@ -36,7 +38,7 @@
                             <% end %>
                         </div>
                     </div>
-                    <h6 class="ml-5"><%= task.deadline %></h6>
+                    <h6 class="ml-5"><%= task.deadline.strftime("%B %d, %Y") %></h6>
 
                 </div>
             <% end %>

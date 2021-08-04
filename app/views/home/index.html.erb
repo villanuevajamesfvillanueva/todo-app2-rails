@@ -27,7 +27,7 @@
                     <div class='task-title flex flex-col justify-start items-start w-full mb-5'>
                         <div class="flex justify-start items-center">
                             <div class='categ-marker w-2 h-2 rounded-full mt-1' style="background:<%= task.category.color %>"></div>
-                            <td><%= link_to task.title, task, class: 'text-lg ml-3 text-black'%></td>
+                            <td><%= link_to task.title, edit_task_path(task), class: 'text-lg ml-3 text-black' %></td>
                         </div>
                         <span class='task-deadline ml-5 text-xs'><%= task.deadline.strftime("%B %d, %Y") %></span>
                     </div>
@@ -52,7 +52,7 @@
                     <div class='task-title flex flex-col justify-start items-start w-full mb-5'>
                         <div class="flex justify-start items-center">
                             <div class='categ-marker w-2 h-2 rounded-full mt-1' style="background:<%= task.category.color %>"></div>
-                            <td><%= link_to task.title, task, class: 'text-lg ml-3 text-black'%></td>
+                            <td><%= link_to task.title, edit_task_path(task), class: 'text-lg ml-3 text-black'%></td>
                         </div>
                         <span class='task-deadline ml-5 text-xs'><%= task.deadline.strftime("%B %d, %Y") %></span>
                     </div>
@@ -77,7 +77,7 @@
                     <div class='task-title flex flex-col justify-start items-start w-full mb-5'>
                         <div class="flex justify-start items-center">
                             <div class='categ-marker w-2 h-2 rounded-full mt-1' style="background:<%= task.category.color %>"></div>
-                            <td><%= link_to task.title, task, class: 'text-lg ml-3 text-black'%></td>
+                            <td><%= link_to task.title, edit_task_path(task), class: 'text-lg ml-3 text-black'%></td>
                         </div>
                         <span class='task-deadline ml-5 text-xs'><%= task.deadline.strftime("%B %d, %Y") %></span>
                     </div>

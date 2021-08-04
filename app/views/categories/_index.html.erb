@@ -14,8 +14,10 @@
                             <div class="w-max px-2 py-2 bg-white rounded-md shadow dark-mode:bg-gray-800">
                                 <% task_class = "block px-4 py-2 mt-2 text-sm font-semibold bg-white rounded-lg dark-mode:bg-gray-800 dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline" %>
                                 <% if category.tasks.count > 0 %>
+                                    <span class="block px-4 py-2 mt-2 text-sm font-semibold bg-white rounded-lg dark-mode:bg-gray-800 dark-mode:text-gray-200 md:mt-0">Tasks</span>
+                                    <hr>
                                     <% category.tasks.each do |task| %>
-                                        <%= link_to task.title, task_path(task), class: task_class %>
+                                        <%= link_to task.title, edit_task_path(task), class: task_class %>
                                     <% end %>
                                 <% else %>
                                     <em class="<%= task_class %>">No tasks yet</em>
