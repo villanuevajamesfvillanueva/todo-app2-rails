@@ -20,14 +20,14 @@
                 </div>
             </div>
             <%= link_to new_task_path, type: :button, class: add_task_class do %>
-                <p class="m-auto font-bold text-lg">+</p>
+                <p class="m-auto font-bold text-lg w-full h-10 text-center pt-1">+</p>
             <% end %>
             <% unfinished.each do |task| %>
                 <div class='task draggable custom-shadow' draggable='true' id='<%= task.id %>'>
                     <div class='task-title flex flex-col justify-start items-start w-full mb-5'>
                         <div class="flex justify-start items-center">
                             <div class='categ-marker w-2 h-2 rounded-full mt-1' style="background:<%= task.category.color %>"></div>
-                            <td><%= link_to task.title, task, class: 'text-lg ml-3 text-black'%></td>
+                            <td><%= link_to task.title, edit_task_path(task), class: 'text-lg ml-3 text-black' %></td>
                         </div>
                         <span class='task-deadline ml-5 text-xs'><%= task.deadline.strftime("%B %d, %Y") %></span>
                     </div>
@@ -45,14 +45,14 @@
                 </div>
             </div>
             <%= link_to new_task_path, type: :button, class: add_task_class do %>
-                <p class="m-auto font-bold text-lg">+</p>
+                <p class="m-auto font-bold text-lg w-full h-10 text-center pt-1">+</p>
             <% end %>
             <% in_progress.each do |task| %>
                 <div class='task draggable custom-shadow' draggable='true' id='<%= task.id %>'>
                     <div class='task-title flex flex-col justify-start items-start w-full mb-5'>
                         <div class="flex justify-start items-center">
                             <div class='categ-marker w-2 h-2 rounded-full mt-1' style="background:<%= task.category.color %>"></div>
-                            <td><%= link_to task.title, task, class: 'text-lg ml-3 text-black'%></td>
+                            <td><%= link_to task.title, edit_task_path(task), class: 'text-lg ml-3 text-black'%></td>
                         </div>
                         <span class='task-deadline ml-5 text-xs'><%= task.deadline.strftime("%B %d, %Y") %></span>
                     </div>
@@ -70,14 +70,14 @@
                 </div>
             </div>
             <%= link_to new_task_path, type: :button, class: add_task_class do %>
-                <p class="m-auto font-bold text-lg">+</p>
+                <p class="m-auto font-bold text-lg w-full h-10 text-center pt-1">+</p>
             <% end %>
             <% completed.each do |task| %>
                 <div class='task draggable custom-shadow' draggable='true' id='<%= task.id %>'>
                     <div class='task-title flex flex-col justify-start items-start w-full mb-5'>
                         <div class="flex justify-start items-center">
                             <div class='categ-marker w-2 h-2 rounded-full mt-1' style="background:<%= task.category.color %>"></div>
-                            <td><%= link_to task.title, task, class: 'text-lg ml-3 text-black'%></td>
+                            <td><%= link_to task.title, edit_task_path(task), class: 'text-lg ml-3 text-black'%></td>
                         </div>
                         <span class='task-deadline ml-5 text-xs'><%= task.deadline.strftime("%B %d, %Y") %></span>
                     </div>

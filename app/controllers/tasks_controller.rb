@@ -6,7 +6,7 @@ class TasksController < ApplicationController
 
   # GET /tasks or /tasks.json
   def index
-    @tasks = current_user.tasks
+    @tasks = current_user.tasks.order('updated_at DESC')
   end
 
   # GET /tasks/1 or /tasks/1.json
@@ -14,16 +14,16 @@ class TasksController < ApplicationController
 
   # GET /tasks/new
   def new
-    @tasks = current_user.tasks
+    @tasks = current_user.tasks.order('updated_at DESC')
     @task = Task.new
-    @current_user_categories = Category.where(user_id: current_user.id).order(:title)
+    @current_user_categories = Category.where(user_id: current_user.id).order('updated_at DESC')
   end
 
   # GET /tasks/1/edit
   def edit
-    @tasks = current_user.tasks
+    @tasks = current_user.tasks.order('updated_at DESC')
     @task = Task.find(params[:id])
-    @current_user_categories = Category.where(user_id: current_user.id).order(:title)
+    @current_user_categories = Category.where(user_id: current_user.id).order('updated_at DESC')
   end
 
   # POST /tasks or /tasks.json
@@ -34,16 +34,24 @@ class TasksController < ApplicationController
         @task.save
         redirect_to request.referrer, notice: 'Task was created successfully.'
     else
-        redirect_to request.referrer, alert: 'Failed to create task.'
+        err_msg = '<div class="text-sm font-medium text-red-700 alert">Failed to create task.</div>'
+        @task.errors.full_messages.each do |msg|
+            err_msg += "<div class='flex-1 leading-snug text-sm text-red-600'>#{msg}</div>"
+        end
+        redirect_to request.referrer, alert: err_msg
     end
   end
 
   # PATCH/PUT /tasks/1 or /tasks/1.json
   def update
     if @task.update(task_params)
-    redirect_to request.referrer, notice: 'Task was created successfully.'
+        redirect_to new_task_path, notice: 'Task was updated successfully.'
     else
-    redirect_to request.referrer, alert: 'Failed to create task.'
+        err_msg = '<div class="text-sm font-medium text-red-700 alert">Failed to update task.</div>'
+        @task.errors.full_messages.each do |msg|
+            err_msg += "<div class='flex-1 leading-snug text-sm text-red-600'>#{msg}</div>"
+        end
+        redirect_to request.referrer, alert: err_msg
     end
   end
 

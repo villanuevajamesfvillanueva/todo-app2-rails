@@ -16,16 +16,7 @@
             <% label_class = "block mb-2 text-sm font-medium text-gray-600 dark:text-gray-200" %>
             
             <%= form_with scope: :category, url: category_path(@category), method: :put, class: form_class, local: true do |f| %>
-            <h4 class="text-2xl">Edit category</h4>
-                <div>
-                    <% if @category.errors.any? %>
-                    <ul>
-                        <% @category.errors.full_messages.each do |msg| %>
-                            <li class="alert alert-danger" role="alert" ><%= msg %></li>
-                        <% end %>
-                    </ul>
-                    <% end %>
-                </div>
+                <h4 class="text-2xl">Edit category</h4>
 
                 <%= f.hidden_field :user_id, value: current_user.id %>
 
@@ -41,7 +32,7 @@
                             <span class="my-auto mx-4 font-medium text-gray-600 dark:text-gray-200">Old</span>
                             <div class="rounded-sm" style="background:<%= @category.color %>; width:2em; height:2em;"></div>
                             <span class="my-auto mx-4 font-medium text-gray-600 dark:text-gray-200">New</span>
-                            <div class="color-picker custom-color-picker-class "></div>
+                            <div class="color-picker custom-color-picker-class"></div>
                         </div>
                         
                     </div>
@@ -56,7 +47,6 @@
 
                 
                 <%= f.hidden_field :color, class: category_input, id: 'color-textbox'%>
-
 
                 <div class="mt-8">
                     <%= f.submit 'Update category', class: "cursor-pointer w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-gray-700 rounded hover:bg-gray-600 focus:outline-none focus:bg-gray-600" %>

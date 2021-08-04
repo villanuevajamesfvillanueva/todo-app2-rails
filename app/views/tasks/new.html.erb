@@ -1,11 +1,13 @@
 <main class="main flex-col p-0 m-0">
     <div class="board-header w-full flex justify-between items-center px-10">
-        <h4 class="text-3xl font-medium">Tasks</h4>
+        <%= link_to new_task_path do %>
+            <h4 class="text-3xl font-medium">Tasks</h4>
+        <% end %>
         <div>Sort</div>
     </div>
 
     <div class="board w-full flex flex-col px-0 md:flex-row justify-between">
-        <div class="flex flex-col w-full md:mb-5 md:mx-5 bg-gray-100 pt-8 rounded-xl">
+        <div class="flex flex-col w-full md:mb-5 md:mx-5 bg-gray-100 pt-8 rounded-xl" onmouseover="this.style.overflowY='auto'" onmouseout="this.style.overflowY='hidden'">
             <% @tasks.each do |task| %>
                 <div class="custom-shadow mx-auto my-2 p-4 w-11/12 h-auto rounded-xl bg-white">
                     <div class="flex w-full justify-between items-center">
@@ -36,7 +38,7 @@
                             <% end %>
                         </div>
                     </div>
-                    <h6 class="ml-5"><%= task.deadline %></h6>
+                    <h6 class="ml-5"><%= task.deadline.strftime("%B %d, %Y") %></h6>
 
                 </div>
             <% end %>
@@ -49,16 +51,7 @@
             <% label_class = "block mb-2 text-sm font-medium text-gray-600 dark:text-gray-200" %>
 
             <%= form_with scope: :task, url: tasks_path, class: form_class, local: true do |f| %>
-            <h4 class="text-2xl">Create new task</h4>
-                <div>
-                    <% if @task.errors.any? %>
-                    <ul>
-                        <% @task.errors.full_messages.each do |msg| %>
-                            <li class="alert alert-danger" role="alert" ><%= msg %></li>
-                        <% end %>
-                    </ul>
-                    <% end %>
-                </div>
+                <h4 class="text-2xl">Create new task</h4>
 
                 <div class="mt-4">
                     <div class="flex flex-col justify-between">

@@ -16,16 +16,7 @@
             <% label_class = "block mb-2 text-sm font-medium text-gray-600 dark:text-gray-200" %>
 
             <%= form_with scope: :category, url: categories_path, class: form_class, local: true do |f| %>
-            <h4 class="text-2xl">Create new category</h4>
-                <div>
-                    <% if @category.errors.any? %>
-                    <ul>
-                        <% @category.errors.full_messages.each do |msg| %>
-                            <li class="alert alert-danger" role="alert" ><%= msg %></li>
-                        <% end %>
-                    </ul>
-                    <% end %>
-                </div>
+                <h4 class="text-2xl">Create new category</h4>
 
                 <%= f.hidden_field :user_id, value: current_user.id %>
 

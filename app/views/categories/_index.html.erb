@@ -1,4 +1,4 @@
-<div class="flex flex-col w-full md:mb-5 md:mx-5 bg-gray-100 pt-8 rounded-xl">
+<div class="flex flex-col w-full md:mb-5 md:mx-5 bg-gray-100 pt-8 rounded-xl" onmouseover="this.style.overflowY='auto'" onmouseout="this.style.overflowY='hidden'">
     <% @categories.each do |category| %>
         <div class="custom-shadow mx-auto my-2 p-4 w-11/12 h-auto rounded-xl bg-white">
             <div class="flex w-full justify-between items-center">
@@ -14,8 +14,10 @@
                             <div class="w-max px-2 py-2 bg-white rounded-md shadow dark-mode:bg-gray-800">
                                 <% task_class = "block px-4 py-2 mt-2 text-sm font-semibold bg-white rounded-lg dark-mode:bg-gray-800 dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline" %>
                                 <% if category.tasks.count > 0 %>
+                                    <span class="block px-4 py-2 mt-2 text-sm font-semibold bg-white rounded-lg dark-mode:bg-gray-800 dark-mode:text-gray-200 md:mt-0">Tasks</span>
+                                    <hr>
                                     <% category.tasks.each do |task| %>
-                                        <%= link_to task.title, task_path(task), class: task_class %>
+                                        <%= link_to task.title, edit_task_path(task), class: task_class %>
                                     <% end %>
                                 <% else %>
                                     <em class="<%= task_class %>">No tasks yet</em>
