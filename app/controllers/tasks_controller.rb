@@ -45,7 +45,7 @@ class TasksController < ApplicationController
   # PATCH/PUT /tasks/1 or /tasks/1.json
   def update
     if @task.update(task_params)
-        redirect_to request.referrer, notice: 'Task was updated successfully.'
+        redirect_to new_task_path, notice: 'Task was updated successfully.'
     else
         err_msg = '<div class="text-sm font-medium text-red-700 alert">Failed to update task.</div>'
         @task.errors.full_messages.each do |msg|

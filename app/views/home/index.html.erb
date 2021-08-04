@@ -20,7 +20,7 @@
                 </div>
             </div>
             <%= link_to new_task_path, type: :button, class: add_task_class do %>
-                <p class="m-auto font-bold text-lg">+</p>
+                <p class="m-auto font-bold text-lg w-full h-10 text-center pt-1">+</p>
             <% end %>
             <% unfinished.each do |task| %>
                 <div class='task draggable custom-shadow' draggable='true' id='<%= task.id %>'>
@@ -45,7 +45,7 @@
                 </div>
             </div>
             <%= link_to new_task_path, type: :button, class: add_task_class do %>
-                <p class="m-auto font-bold text-lg">+</p>
+                <p class="m-auto font-bold text-lg w-full h-10 text-center pt-1">+</p>
             <% end %>
             <% in_progress.each do |task| %>
                 <div class='task draggable custom-shadow' draggable='true' id='<%= task.id %>'>
@@ -70,7 +70,7 @@
                 </div>
             </div>
             <%= link_to new_task_path, type: :button, class: add_task_class do %>
-                <p class="m-auto font-bold text-lg">+</p>
+                <p class="m-auto font-bold text-lg w-full h-10 text-center pt-1">+</p>
             <% end %>
             <% completed.each do |task| %>
                 <div class='task draggable custom-shadow' draggable='true' id='<%= task.id %>'>
