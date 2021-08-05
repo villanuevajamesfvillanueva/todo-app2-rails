@@ -63,6 +63,15 @@
                         <%= f.text_field :lastname, autofocus: true, autocomplete: "lastname", class: form_input_class %>
                     </div>
                 </div>
+
+                <div class="mt-6">
+                    <%#= image_tag current_user.thumbnail %>
+                </div>
+
+                <div class="mt-6">
+                    <%= f.label :avatar, class: form_label_class %>
+                    <%= f.file_field :avatar, class: form_input_class %>
+                </div>
             </div>        
         <% end %>
 

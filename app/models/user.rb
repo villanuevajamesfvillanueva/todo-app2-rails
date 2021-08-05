@@ -6,9 +6,11 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  has_one_attached :avatar
+
   validates :firstname, :lastname, presence: true
   # validate :avatar_filesize
-  # has_one_attached :avatar
+  
 
   has_many :categories, dependent: :destroy
   has_many :tasks, through: :categories
@@ -23,6 +25,11 @@ class User < ApplicationRecord
 
   def completed
     tasks.where(status: 'completed').order('deadline ASC')
+  end
+
+  def thumbnail
+    avatar.variant(gravity: "Center", resize: "50x50^", crop: '50x50+0+0')
+    # avatar.variant(resize: "150x150!").processed
   end
 
 
