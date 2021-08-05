@@ -65,13 +65,16 @@
                 </div>
 
                 <div class="mt-6">
-                    <%#= image_tag current_user.thumbnail %>
+                    <%= f.label :avatar, class: form_label_class %>
+                    <%= f.file_field :avatar, id: 'image-input', class: form_input_class %>
                 </div>
 
-                <div class="mt-6">
-                    <%= f.label :avatar, class: form_label_class %>
-                    <%= f.file_field :avatar, class: form_input_class %>
+                <div class="flex items-center justify-center mt-10 h-64 w-full border rounded-lg">
+                    <div class="flex items-center justify-center h-60 w-60" id="image-preview" src="">
+                        <%= image_tag 'svg/avatar_placeholder.svg' %>
+                    </div>
                 </div>
+
             </div>        
         <% end %>
 
@@ -83,3 +86,5 @@
     
     </div>
 </main>
+
+<%= javascript_pack_tag 'avatar_previewer' %>
