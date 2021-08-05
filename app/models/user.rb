@@ -7,11 +7,13 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   validates :firstname, :lastname, presence: true
-  # validate :avatar_filesize
-  # has_one_attached :avatar
+  validate :avatar_filetype
+  validate :avatar_filesize
+  
 
   has_many :categories, dependent: :destroy
   has_many :tasks, through: :categories
+  has_one_attached :avatar
 
   def unfinished
     tasks.where(status: 'unfinished').order('deadline ASC')
@@ -25,14 +27,21 @@ class User < ApplicationRecord
     tasks.where(status: 'completed').order('deadline ASC')
   end
 
+  def thumbnail
+    avatar.variant(gravity: "Center", resize: "50x50^", crop: '50x50+0+0')
+  end
 
-#   private
 
-#   def avatar_filetype
-#     errors.add(:avatar, 'needs to be of the following format: JPEG, JPG, or PNG') if avatar.content_type.in?(%('image/jpeg image/jpg image/png image/JPEG image/JPG image/PNG'))
-#   end
+  private
 
-#   def avatar_filesize
-#     errors.add(:avatar, 'file size should not exceed 1 MB!') if avatar.attached? && avatar.byte_size >= 1.megabyte
-#   end
+  def avatar_filetype
+    if avatar.attached? && !avatar.content_type.in?(%w(image/jpeg image/png image/jpg))
+        errors.add(:avatar, 'must be a JPEG or PNG.')
+    end
+  end
+
+  def avatar_filesize
+    return if avatar.attached? == false
+    errors.add(:avatar, 'file size should not exceed 1 MB!') if avatar.attached? && avatar.byte_size >= 1.megabyte
+  end
 end
