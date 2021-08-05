@@ -32,43 +32,47 @@
         <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
         <%= render "devise/shared/error_messages", resource: resource %>
 
+        <% form_label_class = "block mb-2 text-sm font-medium text-gray-600 dark:text-gray-200" %>
+        <% form_input_class = "block w-full px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring" %%>
+        <% form_submit_class = "cursor-pointer w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-gray-700 rounded hover:bg-gray-600 focus:outline-none focus:bg-gray-600" %>
+
         <div class="mt-4">
-            <%= f.label :email, class: "block mb-2 text-sm font-medium text-gray-600 dark:text-gray-200" %>
-            <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "block w-full px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring" %>
+            <%= f.label :email, class: form_label_class %>
+            <%= f.email_field :email, autofocus: true, autocomplete: "email", class: form_input_class %>
         </div>
 
         <div class="mt-4 flex flex-row justify-between">
             <div class="">
-                <%= f.label :firstname, class: "block mb-2 text-sm font-medium text-gray-600 dark:text-gray-200" %>
-                <%= f.text_field :firstname, autofocus: true, autocomplete: "firstname", class: "block w-full px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring" %>
+                <%= f.label :firstname, class: form_label_class %>
+                <%= f.text_field :firstname, autofocus: true, autocomplete: "firstname", class: form_input_class %>
             </div>
 
             <div class="">
-                <%= f.label :lastname, class: "block mb-2 text-sm font-medium text-gray-600 dark:text-gray-200" %>
-                <%= f.text_field :lastname, autofocus: true, autocomplete: "lastname", class: "block w-full px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring" %>
+                <%= f.label :lastname, class: form_label_class %>
+                <%= f.text_field :lastname, autofocus: true, autocomplete: "lastname", class: form_input_class %>
             </div>
         </div>
 
         <div class="mt-4">
             <% if @minimum_password_length %>
                 <div class="flex flex-row">
-                    <%= f.label :password, "Password", class: "mb-2 text-sm font-medium text-gray-600 dark:text-gray-200" %>
+                    <%= f.label :password, "Password", class: form_label_class %>
                     <span class="italic mb-2 ml-2 text-sm font-medium text-gray-600 dark:text-gray-200">(<%= @minimum_password_length %> characters minimum)</span>
                 </div>
                 
             <% else %>
-                <%= f.label :password, class: "block mb-2 text-sm font-medium text-gray-600 dark:text-gray-200" %>
+                <%= f.label :password, class: form_label_class %>
             <% end %>
-            <%= f.password_field :password, autocomplete: "current-password", class: "block w-full px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring" %>
+            <%= f.password_field :password, autocomplete: "current-password", class: form_input_class %>
         </div>
 
         <div class="mt-4">
-            <%= f.label :password_confirmation, class: "block mb-2 text-sm font-medium text-gray-600 dark:text-gray-200" %>
-            <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "block w-full px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring" %>
+            <%= f.label :password_confirmation, class: form_label_class %>
+            <%= f.password_field :password_confirmation, autocomplete: "new-password", class: form_input_class %>
         </div>
 
         <div class="mt-8">
-            <%= f.submit "Sign up", class: "cursor-pointer w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-gray-700 rounded hover:bg-gray-600 focus:outline-none focus:bg-gray-600" %>
+            <%= f.submit "Sign up", class: form_submit_class %>
         </div>
         <% end %>
 
