@@ -16,15 +16,15 @@ class User < ApplicationRecord
   has_one_attached :avatar
 
   def unfinished
-    tasks.where(status: 'unfinished').order('deadline ASC')
+    tasks.where(status: 'unfinished').order('updated_at DESC')
   end
 
   def in_progress
-    tasks.where(status: 'in_progress').order('deadline ASC')
+    tasks.where(status: 'in_progress').order('updated_at DESC')
   end
 
   def completed
-    tasks.where(status: 'completed').order('deadline ASC')
+    tasks.where(status: 'completed').order('updated_at DESC')
   end
 
   def thumbnail
