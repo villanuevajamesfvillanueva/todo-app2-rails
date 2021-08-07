@@ -1,17 +1,98 @@
-<%= form_with(model: task) do |form| %>
-  <% if task.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(task.errors.count, "error") %> prohibited this task from being saved:</h2>
 
-      <ul>
-        <% task.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+<% form_class = "mx-auto w-11/12 custom-shadow rounded-xl bg-white px-6 py-8" %>
+<% task_input = "block w-full px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring" %>
+<% label_class = "block mb-2 text-sm font-medium text-gray-600 dark:text-gray-200" %>
+<% submit_btn_class = "cursor-pointer w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-gray-700 rounded hover:bg-gray-600 focus:outline-none focus:bg-gray-600" %>
 
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+<% if params[:action] == 'new' %>
+    <%= form_with scope: :task, url: tasks_path, class: form_class, local: true do |f| %>
+        <h4 class="text-2xl">Create new task</h4>
+
+        <div class="mt-4">
+            <div class="flex flex-col justify-between">
+                <div class="flex flex-row">
+                    <%= f.label :title, class: label_class %>
+                    <em class="ml-4 text-red-500" id="task-title-error">Title can't be null</em>
+                </div>
+                <%= f.text_field :title, class: task_input, id: 'task-title' %>
+            </div>
+        </div>
+
+        <div class="mt-4 flex flex-row justify-between items-center">
+            <div class="w-1/2 mr-2">
+                <div class="flex flex-row">
+                    <%= f.label "Category", class: label_class %>
+                    <em class="ml-4 text-red-500" id="task-category-error">Category can't be null</em>
+                </div>
+                <%= f.collection_select :category_id, @current_user_categories, :id, :title, { include_blank: true }, { class: task_input + " cursor-pointer ", id: 'task-category' } %>
+            </div>
+
+            <div class="w-1/2 ml-2">
+                <div class="flex flex-row">
+                    <%= f.label "Deadline", class: label_class %>
+                    <em class="ml-4 text-red-500" id="task-deadline-error">Deadline can't be null</em>
+                </div>
+                <%= f.date_field :deadline, class: task_input + " cursor-pointer ", id: 'task-deadline' %>
+            </div>
+        </div>
+
+        <div class="mt-4">
+            <div class="flex flex-col justify-between">
+                <div class="flex flex-row">
+                    <%= f.label :body, class: label_class %>
+                    <em class="ml-4 text-red-500" id="task-body-error">Body can't be null</em>
+                </div>
+                <%= f.text_area :body, class: task_input + " h-48 ", id: 'task-body'%>
+            </div>
+        </div>
+
+        <%= f.hidden_field :status, value: "unfinished" %>
+        
+        <div class="mt-8">
+            <%= f.submit 'Create task', class: submit_btn_class, id: 'submit-btn', disabled: true %>
+        </div>
+    <% end %>
+
+<% elsif params[:action] == 'edit' %>
+    <%= form_with scope: :task, url: task_path(@task), class: form_class, method: :put, local: true do |f| %>
+        <h4 class="text-2xl">Edit task</h4>
+
+        <div class="mt-4">
+            <div class="flex flex-col justify-between">
+                <%= f.label :title, class: label_class %>
+                <%= f.text_field :title, class: task_input %>
+            </div>
+        </div>
+
+        <div class="mt-4 flex flex-row justify-between items-center">
+            <div class="w-1/2 mr-2">
+                <%= f.label "Category", class: label_class %>
+                <%= f.collection_select :category_id, @current_user_categories, :id, :title, { include_blank: true }, { class: task_input + " cursor-pointer " } %>
+            </div>
+
+            <div class="w-1/2 ml-2">
+                <%= f.label "Deadline", class: label_class %>
+                <%= f.date_field :deadline, class: task_input + " cursor-pointer " %>
+            </div>
+        </div>
+
+        <div class="mt-4">
+            <div class="flex flex-col justify-between">
+                <%= f.label :body, class: label_class %>
+                <%= f.text_area :body, class: task_input + " h-48 " %>
+            </div>
+        </div>
+
+        
+        <%= f.hidden_field :status %>
+        
+        
+        <div class="mt-8">
+            <%= f.submit 'Update task', class: submit_btn_class %>
+        </div>
+    <% end %>
+    
 <% end %>
+    
+
+    

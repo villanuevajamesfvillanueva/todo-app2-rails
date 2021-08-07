@@ -64,7 +64,7 @@ class TasksController < ApplicationController
   def destroy
     @task.destroy
     respond_to do |format|
-      format.html { redirect_to request.referrer, notice: 'Task was successfully deleted.' }
+      format.html { redirect_to new_task_path, notice: 'Task was successfully deleted.' }
       format.json { head :no_content }
     end
   end
