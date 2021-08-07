@@ -10,34 +10,46 @@
 
         <div class="mt-4">
             <div class="flex flex-col justify-between">
-                <%= f.label :title, class: label_class %>
-                <%= f.text_field :title, class: task_input %>
+                <div class="flex flex-row">
+                    <%= f.label :title, class: label_class %>
+                    <em class="ml-4 text-red-500" id="task-title-error">Title can't be null</em>
+                </div>
+                <%= f.text_field :title, class: task_input, id: 'task-title' %>
             </div>
         </div>
 
         <div class="mt-4 flex flex-row justify-between items-center">
             <div class="w-1/2 mr-2">
-                <%= f.label "Category", class: label_class %>
-                <%= f.collection_select :category_id, @current_user_categories, :id, :title, { include_blank: true }, { class: task_input + " cursor-pointer " } %>
+                <div class="flex flex-row">
+                    <%= f.label "Category", class: label_class %>
+                    <em class="ml-4 text-red-500" id="task-category-error">Category can't be null</em>
+                </div>
+                <%= f.collection_select :category_id, @current_user_categories, :id, :title, { include_blank: true }, { class: task_input + " cursor-pointer ", id: 'task-category' } %>
             </div>
 
             <div class="w-1/2 ml-2">
-                <%= f.label "Deadline", class: label_class %>
-                <%= f.date_field :deadline, class: task_input + " cursor-pointer " %>
+                <div class="flex flex-row">
+                    <%= f.label "Deadline", class: label_class %>
+                    <em class="ml-4 text-red-500" id="task-deadline-error">Deadline can't be null</em>
+                </div>
+                <%= f.date_field :deadline, class: task_input + " cursor-pointer ", id: 'task-deadline' %>
             </div>
         </div>
 
         <div class="mt-4">
             <div class="flex flex-col justify-between">
-                <%= f.label :body, class: label_class %>
-                <%= f.text_area :body, class: task_input + " h-48 " %>
+                <div class="flex flex-row">
+                    <%= f.label :body, class: label_class %>
+                    <em class="ml-4 text-red-500" id="task-body-error">Body can't be null</em>
+                </div>
+                <%= f.text_area :body, class: task_input + " h-48 ", id: 'task-body'%>
             </div>
         </div>
 
         <%= f.hidden_field :status, value: "unfinished" %>
         
         <div class="mt-8">
-            <%= f.submit 'Create task', class: submit_btn_class %>
+            <%= f.submit 'Create task', class: submit_btn_class, id: 'submit-btn', disabled: true %>
         </div>
     <% end %>
 
