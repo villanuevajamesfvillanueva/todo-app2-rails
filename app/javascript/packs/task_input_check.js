@@ -60,4 +60,3 @@ taskTitle.oninput = valueCheck;
 taskCategory.oninput = valueCheck;
 taskDeadline.oninput = valueCheck;
 taskBody.oninput = valueCheck;
-

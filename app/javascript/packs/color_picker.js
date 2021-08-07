@@ -1,6 +1,8 @@
 import Pickr from '@simonwep/pickr';
 
 const colorTextBox = document.getElementById('color-textbox');
+const categoryColorProxy = document.getElementById('category-color-proxy');
+const categoryColorError = document.getElementById('category-color-error');
 
 const pickr = Pickr.create({
     el: '.color-picker',
@@ -46,7 +48,10 @@ const pickr = Pickr.create({
 pickr.on('change', (color, source, instance) => {
     let rgbaColor = color.toRGBA().toString(3);
     colorTextBox.value = rgbaColor;
+}).on('save', (color, source, instance) => {
+    if (color) {
+        let rgbaColor = color.toRGBA().toString(3);
+        categoryColorProxy.dataset.colorInput = rgbaColor;
+        categoryColorError.classList.add('hidden');
+    }
 });
-
-
-
