@@ -15,6 +15,7 @@ class TasksController < ApplicationController
   # GET /tasks/new
   def new
     @tasks = current_user.tasks.order('updated_at DESC')
+    @categories = current_user.categories
     @task = Task.new
     @current_user_categories = Category.where(user_id: current_user.id).order('updated_at DESC')
   end

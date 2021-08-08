@@ -1,4 +1,10 @@
 <div class="flex flex-col w-full md:mb-5 md:mx-5 bg-gray-100 pt-8 rounded-xl" onmouseover="this.style.overflowY='auto'" onmouseout="this.style.overflowY='hidden'">
+    <% if @categories.count < 1 %>
+        <div class="flex justify-center mx-auto mt-8 p-4 w-11/12 h-auto rounded-xl">
+            <em class="text-lg">No categories yet</em>
+        </div>
+    <% end %>
+
     <% @categories.each do |category| %>
         <div class="custom-shadow mx-auto my-2 p-4 w-11/12 h-auto rounded-xl bg-white">
             <div class="flex w-full justify-between items-center">
