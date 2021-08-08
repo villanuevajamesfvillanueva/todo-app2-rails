@@ -22,6 +22,16 @@
             <%= link_to new_task_path, type: :button, class: add_task_class do %>
                 <p class="m-auto font-bold text-lg w-full h-10 text-center pt-1">+</p>
             <% end %>
+
+            <% if @tasks.count < 1 %>
+                <div class="flex flex-col items-center justify-center mx-auto mt-8 p-4 w-11/12 h-auto rounded-xl">
+                    <em class="text-lg">No tasks yet</em>
+                    <% if @categories.count < 1 %>
+                        <em class="">(To start adding tasks, create a category first)</em>                    
+                    <% end %>
+                </div>
+            <% end %>
+
             <% unfinished.each do |task| %>
                 <div class='task draggable custom-shadow' draggable='true' id='<%= task.id %>'>
                     <div class='task-title flex flex-col justify-start items-start w-full mb-5'>
