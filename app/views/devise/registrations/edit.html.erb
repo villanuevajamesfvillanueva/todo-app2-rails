@@ -41,7 +41,7 @@
                 <div class="mt-6">
                     <div class="flex flex-row">
                         <%= f.label :current_password, class: form_label_class %>
-                        <span class="italic mb-2 ml-2 text-sm font-medium text-gray-600 dark:text-gray-200">(we need your current password to confirm your changes)</span>
+                        <span class="italic mb-2 ml-2 text-sm font-medium text-red-500 dark:text-gray-200">(we need your current password to confirm your changes)</span>
                     </div>
                     <%= f.password_field :current_password, autocomplete: "current-password", class: form_input_class %>
                 </div>
